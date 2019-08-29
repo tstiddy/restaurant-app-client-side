@@ -11,3 +11,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+.card {
+  overflow-x: auto;
+  display: flex;
+  width: 960px;
+  margin: 0 auto;
+  background-color: #FAFAFA;
+}
+
+.card::-webkit-scrollbar {
+  display: none;
+}

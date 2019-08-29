@@ -48,7 +48,6 @@ class Main extends React.Component {
     this.fetchRestaurant()
   }
 
-  // findRestaurant = id => this.state.restaurants.find(r => console.log(r.restaurant.id))
   findRestaurant = id => this.state.restaurants.find(r => r.restaurant.id === id)
 
   render() {
@@ -59,7 +58,7 @@ class Main extends React.Component {
         </div>
         <Route exact path={"/restaurants"} component={(props) => <RestaurantList {...props} restaurants={this.state.restaurants} showMore={this.showMoreResta}/>} />
         <Route path={"/restaurants/:id"} component={(props) => 
-          <RestaurantShow {...props} loading={!this.findRestaurant(props.match.params.id)} {...this.findRestaurant(props.match.params.id)}/>
+          <RestaurantShow {...props} loading={!this.findRestaurant(props.match.params.id)} {...this.findRestaurant(props.match.params.id)} />
         }/>
       </div>
     )
