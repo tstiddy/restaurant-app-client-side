@@ -1,0 +1,19 @@
+import React from 'react';
+import {Card, Image, Button} from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
+
+const RestaurantDetail = ({ restaurant }) => {
+    return (
+        <Card>
+            <Image src={restaurant.thumb}/>
+            <Card.Content>
+                <Card.Header>{restaurant.name}</Card.Header>
+                <Card.Description>{restaurant.cuisines}</Card.Description>
+                <br />
+                <Card.Description>{restaurant.location.locality_verbose}</Card.Description>
+            </Card.Content>
+            <Button as={Link} to={`/restaurants/${restaurant.id}`}>More Detail</Button>
+        </Card>
+    )
+}
+export default RestaurantDetail

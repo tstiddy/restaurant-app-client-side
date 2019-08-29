@@ -13,9 +13,9 @@ const FormContainer = ({ user, signUp, logIn, logOut }) => {
                  <div>
                     <Modal trigger={<Button>Log In</Button>}>
                         <Modal.Content>
-                            <LoginForm submit={logIn} header={'Log in'} />
+                            <LoginForm submit={logIn} header={'Log in'}/>
                             {/* Tempery for testing Auth */}
-                            <SignupForm submit={signUp} header={'Sign Up'} />
+                            <SignupForm submit={signUp} header={'Sign Up'}/>
                         </Modal.Content>
                     </Modal>
                 </div>
