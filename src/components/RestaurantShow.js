@@ -56,5 +56,5 @@ class RestaurantShow extends React.Component {
 }
 
 export default GoogleApiWrapper({
-    apiKey: 'AIzaSyBnQ6DV6p3BQpKRtRYxzTgFFxYxXqwoEJw'
+    apiKey: 'APIKEY'
 })(RestaurantShow)
