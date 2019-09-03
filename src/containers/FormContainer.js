@@ -2,12 +2,14 @@ import React from 'react';
 import { Button, Modal } from 'semantic-ui-react'
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
+import {Link} from 'react-router-dom';
 
 const FormContainer = ({ user, signUp, logIn, logOut }) => {
     return (
         <div>
             {
                 user ? <div>
+                    <Button as={Link} to={'/favorites'}>Favorites</Button>
                     <Button onClick = {logOut}>Log Out</Button>
                 </div> :
                  <div>
