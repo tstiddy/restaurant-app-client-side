@@ -55,6 +55,7 @@ class Main extends React.Component {
 
   newFavorite = newFavorite => {
     API.createFavorite(newFavorite)
+    this.setState({ user: {...this.state.user, favoriteIds: [...this.state.user.favoriteIds, newFavorite.restaurant_id]}})
   }
 
   setCuisine = (event, data) => {
@@ -68,13 +69,15 @@ class Main extends React.Component {
     this.setState({searchTerm: e.target.value})
   }
 
-  handleFormSubmit = () => {
+  handleFormSubmit = (e) => {
     this.setState({restaurants: [] })
     RestaurantAPI.restaurantSearch(this.state.searchTerm)
       .then(restaurant => this.setState({restaurants: restaurant.restaurants}))
   }
 
   findRestaurant = id => this.state.restaurants.find(r => r.restaurant.id === id)
+
+  findUser = id => this.state.user ? undefined : true
 
   render() {
     return (
@@ -83,17 +86,22 @@ class Main extends React.Component {
           <FormContainer user = {this.state.user} signUp = {this.signUp} logIn = {this.logIn} logOut = {this.logOut} />
         </div>
         <div>
-          <SearchBar handleChange={this.setCuisine} result={this.state.searchTerm} searchResults={this.searchResults} handleFormSubmit={this.handleFormSubmit}/>
-        </div>
-        <div>
-          <Route exact path={"/restaurants"} component={(props) => <RestaurantList {...props} restaurants={this.state.restaurants} showMore={this.showMoreResta}/>} />
+          <Route exact path={"/restaurants"} render={(props) => 
+          <div>
+            <SearchBar handleChange={this.setCuisine} cuisineType={this.state.cuisineType} searchState={this.state.searchTerm} searchResults={this.searchResults} handleFormSubmit={this.handleFormSubmit}/>
+            <RestaurantList {...props} restaurants={this.state.restaurants} showMore={this.showMoreResta}/> 
+          </div>} />
           <Route path={"/restaurants/:id"} component={(props) => 
             <RestaurantShow {...props} loading={!this.findRestaurant(props.match.params.id)} 
                           {...this.findRestaurant(props.match.params.id)} {...this.state.user} 
                           newFavorite={this.newFavorite}/>
           }/>
         </div>
-          <Route exact path={"/favorites"} component={(props) => <FavoritesCard {...props} {...this.state.user} />} />
+          <Route exact path={"/favorites/:id"} component={(props) => 
+            <FavoritesCard {...props} loading={this.findUser(props.match.params.id)} 
+              {...this.state.user} 
+            />
+          }/>
       </div>
     )
   }

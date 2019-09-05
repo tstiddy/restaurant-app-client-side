@@ -19,7 +19,7 @@ const LoginForm = ({ submit, header }) => {
                 <input placeholder='email' type="email" name="email" value={email} onChange={e => setEmail(e.target.value)}/>
             </Form.Field>
             <Form.Field>
-                <label>password</label>
+                <label>Password</label>
                 <input placeholder='password' type="password" name="password" value={password} onChange={e => setPassword(e.target.value)} />
             </Form.Field>
             <Button type="submit">Log In</Button>

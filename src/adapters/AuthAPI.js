@@ -26,6 +26,7 @@ const constructHeaders = (moreHeaders = {}) => (
     }
 )
 
+
 const signUp = (user) => fetch(signupURL, {
     method: 'POST',
     headers: {

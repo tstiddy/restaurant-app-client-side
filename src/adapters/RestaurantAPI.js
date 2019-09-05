@@ -7,7 +7,7 @@ let cuisineURL = `https://developers.zomato.com/api/v2.1/search?entity_id=61&ent
 
 const getRestaurants = () => fetch(restaurantURL).then(res => res.json())
 
-const increaseNumResta = (restaCuisine, restaSearch) => restaurantURL = `https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&start=${numResta += 10}&cuisines=${restaCuisine}&q=${restaSearch}&apikey=${APIKey}`
+const increaseNumResta = (restaCuisine, restaSearch) => restaurantURL = `https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&start=${numResta += 5}&cuisines=${restaCuisine}&q=${restaSearch}&apikey=${APIKey}`
 
 const cuisineSearch = (restaCuisine) => fetch(`https://developers.zomato.com/api/v2.1/search?entity_id=61&entity_type=city&start=${numResta}&cuisines=${restaCuisine}&apikey=${APIKey}`).then(res => res.json())
 
