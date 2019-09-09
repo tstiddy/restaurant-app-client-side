@@ -8,6 +8,8 @@ import RestaurantList from '../components/RestaurantList';
 import RestaurantShow from '../components/RestaurantShow';
 import FavoritesCard from '../components/FavoritesCard';
 import SearchBar from '../components/SearchBar';
+import Booking from '../components/Booking';
+import ListBookings from '../components/ListBookings';
 
 class Main extends React.Component {
 
@@ -58,6 +60,12 @@ class Main extends React.Component {
     this.setState({ user: {...this.state.user, favoriteIds: [...this.state.user.favoriteIds, newFavorite.restaurant_id]}})
   }
 
+  myBooking = myBooking => {
+    // console.log(myBooking)
+    API.createBooking(myBooking)
+    this.setState({ user: {...this.state.user, bookings: [...this.state.user.bookings, myBooking]}})
+  }
+
   setCuisine = (event, data) => {
     this.setState({ restaurants: [] })
     this.setState({ cuisineType: data.value})
@@ -91,17 +99,35 @@ class Main extends React.Component {
             <SearchBar handleChange={this.setCuisine} cuisineType={this.state.cuisineType} searchState={this.state.searchTerm} searchResults={this.searchResults} handleFormSubmit={this.handleFormSubmit}/>
             <RestaurantList {...props} restaurants={this.state.restaurants} showMore={this.showMoreResta}/> 
           </div>} />
-          <Route path={"/restaurants/:id"} component={(props) => 
+          <Route exact path={"/restaurants/:id"} component={(props) => 
             <RestaurantShow {...props} loading={!this.findRestaurant(props.match.params.id)} 
                           {...this.findRestaurant(props.match.params.id)} {...this.state.user} 
                           newFavorite={this.newFavorite}/>
           }/>
         </div>
+        <div>
           <Route exact path={"/favorites/:id"} component={(props) => 
-            <FavoritesCard {...props} loading={this.findUser(props.match.params.id)} 
+            this.state.user ?
+            <FavoritesCard {...props} 
               {...this.state.user} 
-            />
+            /> :
+            <h1>Loading</h1>
           }/>
+        </div>
+        <div>
+          <Route exact path={"/:id/bookings"} component={(props) => <Booking {...props} {...this.state.user} myBooking={this.myBooking}/>}
+          />
+        </div>
+        <div>
+          <Route exact path={"/booking"} component={(props) => 
+            this.state.user ?
+              <ListBookings {...props} 
+                {...this.state.user}
+              /> :
+              <h1>Loading</h1>
+            }/>
+        </div>
+          
       </div>
     )
   }

@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Modal, Icon, Menu } from 'semantic-ui-react'
 import LoginForm from '../components/LoginForm';
 import SignupForm from '../components/SignupForm';
-import {Link, Route} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const FormContainer = ({ user, signUp, logIn, logOut }) => {
     return (
@@ -14,6 +14,7 @@ const FormContainer = ({ user, signUp, logIn, logOut }) => {
                         <Icon link circular color='red' name='utensils' size='big'/>
                     </Menu.Item>
                     <Button as={Link} to={`/favorites/${user.id}`}>Favorites</Button>
+                    <Button as={Link} to={"/booking"}>Bookings</Button>
                     <Button onClick = {logOut}>Log Out</Button>
                 </div> :
                  <div>
@@ -25,10 +26,7 @@ const FormContainer = ({ user, signUp, logIn, logOut }) => {
                         <Modal.Content>
                             <LoginForm submit={logIn} header={'Log in'}/>
                             {/* Tempery for testing Auth */}
-                            {/* <Button as={Link} to={'/restaurants/signup'}>Sign Up</Button> */}
-                            {/* <Route exact path={"/restaurants/signup"} render={(props) => */}
-                                <SignupForm submit={signUp} header={'Sign Up'}/>
-                            {/* </Route> */}
+                            <SignupForm submit={signUp} header={'Sign Up'}/>
                         </Modal.Content>
                     </Modal>
                 </div>

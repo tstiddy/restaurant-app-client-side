@@ -1,6 +1,7 @@
 import React from 'react';
-import {Dimmer, Container, Loader, Card, Icon} from 'semantic-ui-react';
+import {Dimmer, Container, Loader, Card, Icon, Button} from 'semantic-ui-react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import {Link} from 'react-router-dom';
 
 class RestaurantShow extends React.Component {
 
@@ -27,7 +28,7 @@ class RestaurantShow extends React.Component {
             </Container>
         }
 
-        const {name, cuisines, location, phone_numbers, photos, timings} = this.props.restaurant
+        const {name, cuisines, location, phone_numbers, photos, timings, id} = this.props.restaurant
         const mapStyles = {width: '50%', height: '50%'}
         let found = undefined
         if (this.props.favoriteIds === undefined) {
@@ -40,8 +41,15 @@ class RestaurantShow extends React.Component {
                 <div>
                 {
                     this.props.id === undefined ? '' :
-                    found || this.state.isFavorite ? <Icon color="yellow" name="star" size='large' onClick={this.favoriteRestaurant}/> :
-                    <Icon color="grey" name='star outline' size='large' onClick={this.favoriteRestaurant}/>
+                    found || this.state.isFavorite ? <div>
+                        <Icon color="yellow" name="star" size='large' onClick={this.favoriteRestaurant}/> 
+                        <Button as={Link} to={`/${id}/bookings`}>Book a Table</Button>
+                    </div>
+                    :
+                    <div>
+                        <Icon color="grey" name='star outline' size='large' onClick={this.favoriteRestaurant}/>
+                        <Button as={Link} to={`/${id}/bookings`}>Book a Table</Button>
+                    </div>
                 }
                 </div>
                 <div className="restName">
