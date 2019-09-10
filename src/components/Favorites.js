@@ -30,7 +30,7 @@ class Favorites extends React.Component {
         )
 
         return (
-            <Card 
+            <Card raised
                 image={this.state.favoriteRestaurant.thumb}
                 header={this.state.favoriteRestaurant.name}
                 meta={this.state.favoriteRestaurant.cuisines}

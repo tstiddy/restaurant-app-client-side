@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimmer, Container, Loader, Card, Icon, Button} from 'semantic-ui-react';
+import {Dimmer, Container, Loader, Card, Icon, Button, Image, Segment} from 'semantic-ui-react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import {Link} from 'react-router-dom';
 
@@ -28,8 +28,8 @@ class RestaurantShow extends React.Component {
             </Container>
         }
 
-        const {name, cuisines, location, phone_numbers, photos, timings, id} = this.props.restaurant
-        const mapStyles = {width: '50%', height: '50%'}
+        const {name, cuisines, location, phone_numbers, photos, timings, id, thumb} = this.props.restaurant
+        const mapStyles = {width: '90%', height: '13em'}
         let found = undefined
         if (this.props.favoriteIds === undefined) {
             found = false
@@ -38,50 +38,61 @@ class RestaurantShow extends React.Component {
         }
         return (
             <div>
-                <div>
-                {
-                    this.props.id === undefined ? '' :
-                    found || this.state.isFavorite ? <div>
-                        <Icon color="yellow" name="star" size='large' onClick={this.favoriteRestaurant}/> 
-                        <Button as={Link} to={`/${id}/bookings`}>Book a Table</Button>
-                    </div>
-                    :
+                <br/>
+                <br/>
+                <Card.Group centered>
+                    <Card raised>
                     <div>
-                        <Icon color="grey" name='star outline' size='large' onClick={this.favoriteRestaurant}/>
-                        <Button as={Link} to={`/${id}/bookings`}>Book a Table</Button>
+                        <Image centered src={photos.map(photo =>
+                                photo.photo.thumb_url)} />
+                        {
+                            photos.map(photo =>
+                                <Image key={photo.photo.thumb_url} image={photo.photo.thumb_url}/>)
+                        }
                     </div>
-                }
-                </div>
-                <div className="restName">
-                    Name:{name}
-                </div>
-                <div>
-                    Cuisines:{cuisines}
-                </div>
-                <div>
-                    Address:{location.address}
-                </div>
-                <div>
-                    Phone Number:{phone_numbers}
-                </div>
-                <div>
-                    Opening Times:{timings}
-                </div>
-                <div>
-                    <Card.Group itemsPerRow={5} >
-                        {photos.map(photo => 
-                            <Card raised key={photo.photo.thumb_url} image={photo.photo.thumb_url}></Card>
-                        )}
-                    </Card.Group>
-                </div>
-                <Map 
-                    google={this.props.google}
-                    zoom={15}
-                    style={mapStyles}
-                    initialCenter={{ lat: location.latitude, lng: location.longitude}}    
-                >
-                <Marker position={{ lat: location.latitude, lng: location.longitude}} />
-                </Map>
+                        <Card.Content>
+                        <div>
+                        {
+                            this.props.id === undefined ? '' :
+                            found || this.state.isFavorite ?
+                            <Icon floated='right' color="yellow" name="star" size='large' onClick={this.favoriteRestaurant}/> 
+                            :
+                            <Icon floated='right'color="grey" name='star outline' size='large' onClick={this.favoriteRestaurant}/>
+                        }
+                        </div>
+                        <br/>
+                            <Card.Header>{name}</Card.Header>
+                            <Card.Meta>Address: {location.address}</Card.Meta>
+                            <Card.Description>Cuisines: {cuisines}</Card.Description>
+                            <Card.Description>Phone Number: {phone_numbers}</Card.Description>
+                            <Card.Description>Opening Times: {timings}</Card.Description>
+                        </Card.Content>
+                        <Card.Content extra>
+                        <Segment basic style={{height: '15em'}}>
+                            <Map 
+                                google={this.props.google}
+                                zoom={15}
+                                style={mapStyles}
+                                initialCenter={{ lat: location.latitude, lng: location.longitude}}    
+                                >
+                                <Marker position={{ lat: location.latitude, lng: location.longitude}} />
+                            </Map>
+                        </Segment>
+                        </Card.Content>
+                            {
+                                this.props.id === undefined ? '' :
+                                found || this.state.isFavorite ?
+                                <Card.Content extra>
+                                    <Button as={Link} to={`/${id}/bookings`}>Book a Table</Button>
+                                </Card.Content>
+                                :
+                                <Card.Content extra>
+                                    <Button as={Link} to={`/${id}/bookings`}>Book a Table</Button>
+                                </Card.Content>
+                            }
+                    </Card>
+                </Card.Group>                        
+
             </div>
         )
     }

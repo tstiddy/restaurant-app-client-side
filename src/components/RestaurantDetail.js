@@ -21,7 +21,7 @@ const RestaurantDetail = ({ restaurant }) => {
         //         <Button as={Link} to={`/restaurants/${restaurant.id}`}>More Detail</Button>
         //     </Card.Content>
         // </Card>
-        <Card 
+        <Card raised
             image={restaurant.thumb}
             header={restaurant.name}
             meta={restaurant.cuisines}

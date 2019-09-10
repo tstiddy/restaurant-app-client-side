@@ -16,7 +16,7 @@ class ShowBooking extends React.Component{
 
     render() {
         return(
-            <Card>
+            <Card raised>
                 <Card.Content>
                     <Card.Header>
                         {this.state.bookedRestaurants.name}
