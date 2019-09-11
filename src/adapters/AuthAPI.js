@@ -1,7 +1,13 @@
-const endpoint = 'http://localhost:3000/api/v1'
-const signupURL = `${endpoint}/users`
-const loginURL = `${endpoint}/login`
-const validateURL = `${endpoint}/validate`
+// const endpoint = 'http://localhost:3000/api/v1'
+// const signupURL = `${endpoint}/users`
+// const loginURL = `${endpoint}/login`
+// const validateURL = `${endpoint}/validate`
+
+const herokuEndPoint = 'https://tablepal-serverside.herokuapp.com/api/v1'
+const signupURL = `${herokuEndPoint}/users`
+const loginURL = `${herokuEndPoint}/login`
+const validateURL = `${herokuEndPoint}/validate`
+
 
 const jsonify = res => {
     if (res.ok)
@@ -26,10 +32,10 @@ const constructHeaders = (moreHeaders = {}) => (
     }
 )
 
-
 const signUp = (user) => fetch(signupURL, {
     method: 'POST',
     headers: {
+        'Accept': 'application/json',
         'Content-Type': 'application/json'
     },
     body: JSON.stringify({ user })
@@ -40,6 +46,7 @@ const signUp = (user) => fetch(signupURL, {
 const logIn = (user) => fetch(loginURL, {
     method: 'POST',
     headers: {
+        Accept: 'application/json',
         'Content-Type': 'application/json'
     },
         body: JSON.stringify({ user })

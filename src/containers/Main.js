@@ -94,7 +94,7 @@ class Main extends React.Component {
           <FormContainer user = {this.state.user} signUp = {this.signUp} logIn = {this.logIn} logOut = {this.logOut} />
         </div>
         <div>
-          <Route exact path={"/restaurants"} render={(props) => 
+          <Route exact path={"/"} render={(props) => 
           <div>
             <SearchBar handleChange={this.setCuisine} cuisineType={this.state.cuisineType} searchState={this.state.searchTerm} searchResults={this.searchResults} handleFormSubmit={this.handleFormSubmit}/>
             <RestaurantList {...props} restaurants={this.state.restaurants} showMore={this.showMoreResta}/> 

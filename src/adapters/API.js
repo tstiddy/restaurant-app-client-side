@@ -1,7 +1,10 @@
-const endpoint = 'http://localhost:3000/api/v1'
-const createFav = `${endpoint}/favorite`
+// const endpoint = 'http://localhost:3000/api/v1'
+// const createFav = `${endpoint}/favorite`
+// const createBook = `${endpoint}/booking`
 
-const createBook = `${endpoint}/booking`
+const herokuEndPoint = 'https://tablepal-serverside.herokuapp.com/api/v1'
+const createFav = `${herokuEndPoint}/favorite`
+const createBook = `${herokuEndPoint}/booking`
 
 const createFavorite = favortie => fetch(createFav, {
     method: 'POST',

@@ -9,7 +9,7 @@ const FormContainer = ({ user, signUp, logIn, logOut }) => {
         <div>
             {
                 user ? <Segment inverted>
-                    <Menu.Item as={Link} to={'/restaurants'}>
+                    <Menu.Item as={Link} to={'/'}>
                         <Icon link circular inverted color='red' name='utensils' size='big'/>
                     </Menu.Item>
                     <Button as={Link} to={`/favorites/${user.id}`}>Favorites</Button>
@@ -17,7 +17,7 @@ const FormContainer = ({ user, signUp, logIn, logOut }) => {
                     <Button onClick = {logOut}>Log Out</Button>
                 </Segment> :
                  <Segment inverted>
-                    <Menu.Item as={Link} to={'/restaurants'}>
+                    <Menu.Item as={Link} to={'/'}>
                         <Icon link circular inverted color='red' name='utensils' size='big'/>
                     </Menu.Item>
                     <Modal trigger={<Button>Log In</Button>}>
