@@ -22,10 +22,10 @@ class ShowBooking extends React.Component{
                         {this.state.bookedRestaurants.name}
                     </Card.Header>
                     <Card.Description>
-                        {`date: ${this.props.bookingDate}`}
+                        {`date: ${this.props.booking_date}`}
                     </Card.Description>
                     <Card.Description>
-                        {`time: ${this.props.bookingTime}`}
+                        {`time: ${this.props.booking_time}`}
                     </Card.Description>
                 </Card.Content>
                 <Card.Content>
