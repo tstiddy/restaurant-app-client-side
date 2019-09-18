@@ -25,6 +25,19 @@ class RestaurantList extends React.Component {
     render() {
         return (
             <>
+            {window.innerWidth >= 900 ? 
+                <div>
+                <Segment basic padded>
+                <Card.Group itemsPerRow={5}>
+                    {
+                        this.props.restaurants.map(restaurant => <RestaurantDetail key={restaurant.restaurant.id} {...restaurant} />)
+                    }
+                </Card.Group>
+                </Segment>
+                <Button onClick={this.props.showMore}>Show More</Button>
+                </div>
+                :
+                <div>
                 <Segment basic padded>
                 <Card.Group itemsPerRow={2}>
                     {
@@ -33,6 +46,8 @@ class RestaurantList extends React.Component {
                 </Card.Group>
                 </Segment>
                 <Button onClick={this.props.showMore}>Show More</Button>
+                </div>
+            }
             </>
         )
     }

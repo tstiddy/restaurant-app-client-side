@@ -28,7 +28,7 @@ class RestaurantShow extends React.Component {
             </Container>
         }
 
-        const {name, cuisines, location, phone_numbers, photos, timings, id, thumb} = this.props.restaurant
+        const {name, cuisines, location, phone_numbers, photos, timings, id} = this.props.restaurant
         const mapStyles = {width: '90%', height: '13em'}
         let found = undefined
         if (this.props.favoriteIds === undefined) {
@@ -55,7 +55,7 @@ class RestaurantShow extends React.Component {
                         {
                             this.props.id === undefined ? '' :
                             found || this.state.isFavorite ?
-                            <Icon floated='right' color="yellow" name="star" size='large' onClick={this.favoriteRestaurant}/> 
+                            <Icon floated='right' color="yellow" name="star" size='large' /> 
                             :
                             <Icon floated='right'color="grey" name='star outline' size='large' onClick={this.favoriteRestaurant}/>
                         }

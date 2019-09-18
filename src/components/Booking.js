@@ -2,7 +2,6 @@ import React from 'react';
 import {DateInput, TimeInput} from 'semantic-ui-calendar-react';
 import {Form, Input, Icon, Button, Dropdown} from 'semantic-ui-react';
 import RestaurantAPI from '../adapters/RestaurantAPI';
-import {Link, Redirect} from 'react-router-dom'
 
 class Booking extends React.Component{
 
